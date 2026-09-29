@@ -3,72 +3,253 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#fbf5f0" />
-    <meta name="description" content="Agenda de citas de Valentina Nails." />
-    <title>Agenda | Valentina Nails</title>
+    <meta name="theme-color" content="#fbf5f0" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1c1316" media="(prefers-color-scheme: dark)" />
+    <meta name="description" content="Agenda de citas de Valery Nails: manicure semipermanente, acrílico y diseños a mano. Tus citas se guardan en este dispositivo." />
+    <title>Valery Nails · Agenda de citas</title>
+
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="mask-icon" href="assets/favicon.svg" color="#702c43" />
+    <link rel="apple-touch-icon" href="assets/logo-mark.svg" />
+    <link rel="manifest" href="site.webmanifest" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
-    <script src="app.js" defer></script>
+    <script type="module" src="js/app.js"></script>
   </head>
+
   <body>
+    <svg class="icon-sprite" aria-hidden="true" focusable="false">
+      <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></symbol>
+      <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.2" fill="none" stroke="currentColor" stroke-width="1.8" /><path d="m16 16 4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></symbol>
+      <symbol id="icon-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="3" fill="none" stroke="currentColor" stroke-width="1.6" /><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /></symbol>
+      <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.6" /><path d="M12 7.8V12l3 2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+      <symbol id="icon-edit" viewBox="0 0 24 24"><path d="M4.5 19.5h4L19 9a2.1 2.1 0 0 0-3-3L5.5 16.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" /><path d="M14.5 6.5 17.5 9.5" fill="none" stroke="currentColor" stroke-width="1.6" /></symbol>
+      <symbol id="icon-trash" viewBox="0 0 24 24"><path d="M5.5 7h13M10 7V5.4A1.4 1.4 0 0 1 11.4 4h1.2A1.4 1.4 0 0 1 14 5.4V7m-7 0 .8 11.2A1.8 1.8 0 0 0 9.6 20h4.8a1.8 1.8 0 0 0 1.8-1.8L17 7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+      <symbol id="icon-undo" viewBox="0 0 24 24"><path d="M9 8H5.5V4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /><path d="M5.8 8.2A7.5 7.5 0 1 1 4.5 13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" /></symbol>
+      <symbol id="icon-upload" viewBox="0 0 24 24"><path d="M12 16V5m0 0L8 9m4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /><path d="M5 15v3.2A1.8 1.8 0 0 0 6.8 20h10.4A1.8 1.8 0 0 0 19 18.2V15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" /></symbol>
+      <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 4v11m0 0 4-4m-4 4-4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /><path d="M5 15v3.2A1.8 1.8 0 0 0 6.8 20h10.4A1.8 1.8 0 0 0 19 18.2V15" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" /></symbol>
+      <symbol id="icon-restore" viewBox="0 0 24 24"><path d="M12 20V9m0 0 4 4m-4-4-4 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" /><path d="M5 9V5.8A1.8 1.8 0 0 1 6.8 4h10.4A1.8 1.8 0 0 1 19 5.8V9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" /></symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6.5 6.5 11 11m0-11-11 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></symbol>
+      <symbol id="icon-chevron-left" viewBox="0 0 24 24"><path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+      <symbol id="icon-chevron-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></symbol>
+      <symbol id="icon-sparkle" viewBox="0 0 24 24"><path d="M12 3.5 13.7 9l5.5 1.7-5.5 1.7L12 18l-1.7-5.6L4.8 10.7 10.3 9Z" fill="currentColor" /><path d="M18.5 16.5 19.2 18.6l2.1.7-2.1.7-.7 2.1-.7-2.1-2.1-.7 2.1-.7Z" fill="currentColor" opacity=".7" /></symbol>
+    </svg>
+
+    <a class="skip-link" href="#appointments-title">Ir a la lista de citas</a>
+
     <div class="app-shell">
       <header class="topbar">
-        <a class="brand" href="./" aria-label="Valentina Nails, agenda">
-          <span class="brand-mark" aria-hidden="true">V</span>
-          <span class="brand-copy"><span class="brand-name">Valery Nails</span><span class="brand-caption">ESTUDIO DE MANICURA</span></span>
+        <a class="brand" href="./" aria-label="Valery Nails, inicio de la agenda">
+          <span class="brand-mark"><img src="assets/logo-mark.svg" alt="" width="42" height="42" /></span>
+          <span class="brand-copy">
+            <span class="brand-name">Valery Nails</span>
+            <span class="brand-caption">Estudio de manicura</span>
+          </span>
         </a>
-        <span class="storage-badge"><span class="status-dot"></span> Guardado en este dispositivo</span>
-      </header>
-      <main class="main-content">
-        <section class="page-heading" aria-labelledby="page-title">
-          <div>
-            <p class="eyebrow" id="today-label"></p>
-            <h1 id="page-title">Tu agenda, <em>en orden.</em></h1>
-            <p class="page-description">Planifica cada detalle de tu próximo trabajo.</p>
-          </div>
-          <button class="button button-primary" id="new-appointment" type="button"><span aria-hidden="true">+</span> Nueva cita</button>
-        </section>
-        <section class="stats-row" aria-label="Resumen de citas">
-          <div class="stat-item"><span class="stat-label">Citas de hoy</span><strong class="stat-value" id="today-count">0</strong></div>
-          <div class="stat-item"><span class="stat-label">Próximas</span><strong class="stat-value" id="upcoming-count">0</strong></div>
-          <div class="stat-item"><span class="stat-label">Total agendadas</span><strong class="stat-value" id="total-count">0</strong></div>
-          <button class="button button-quiet backup-button" id="export-backup" type="button" disabled>Descargar respaldo</button>
-        </section>
-        <section class="appointments-section" aria-labelledby="appointments-title">
-          <div class="section-heading">
-            <div><h2 id="appointments-title">Citas</h2><span class="result-count" id="result-count" aria-live="polite"></span></div>
-            <div class="list-controls">
-              <label class="search-field"><span class="sr-only">Buscar por cliente o servicio</span><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="Buscar cliente o servicio" autocomplete="off" /></label>
-              <label class="sr-only" for="date-filter">Filtrar citas</label>
-              <select id="date-filter" class="filter-select"><option value="upcoming">Próximas</option><option value="today">Hoy</option><option value="all">Todas</option><option value="past">Pasadas</option></select>
+
+        <div class="topbar-tools">
+          <span class="storage-badge" title="Las citas viven solo en este navegador">
+            <span class="status-dot" aria-hidden="true"></span>
+            Guardado en este dispositivo
+          </span>
+
+          <div class="menu" id="data-menu">
+            <button class="button button-quiet" id="data-menu-button" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="data-menu-panel">
+              <svg class="icon" aria-hidden="true"><use href="#icon-download" /></svg>
+              <span>Respaldo</span>
+            </button>
+            <div class="menu-panel" id="data-menu-panel" role="menu" hidden>
+              <p class="menu-title">Tus datos</p>
+              <button class="menu-item" type="button" role="menuitem" data-action="export-csv">
+                <svg class="icon" aria-hidden="true"><use href="#icon-download" /></svg>
+                <span><strong>Descargar citas</strong><small>Archivo CSV para Excel o Sheets</small></span>
+              </button>
+              <button class="menu-item" type="button" role="menuitem" data-action="export-json">
+                <svg class="icon" aria-hidden="true"><use href="#icon-restore" /></svg>
+                <span><strong>Respaldo completo</strong><small>JSON, incluye las fotos de referencia</small></span>
+              </button>
+              <button class="menu-item" type="button" role="menuitem" data-action="import">
+                <svg class="icon" aria-hidden="true"><use href="#icon-upload" /></svg>
+                <span><strong>Restaurar archivo</strong><small>Recupera un respaldo CSV o JSON</small></span>
+              </button>
+              <input type="file" id="import-input" accept=".csv,.json,text/csv,application/json" hidden />
+              <p class="menu-note" id="storage-note">Las citas se guardan en este navegador.</p>
             </div>
           </div>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <section class="hero" aria-labelledby="page-title">
+          <div class="hero-copy">
+            <p class="eyebrow" id="today-label"></p>
+            <h1 id="page-title">Tu agenda, <em>en orden.</em></h1>
+            <p class="page-description">Registra cada cita, sus detalles y las referencias del diseño. Todo queda a un clic.</p>
+          </div>
+          <div class="hero-actions">
+            <button class="button button-primary button-lg" id="new-appointment" type="button">
+              <svg class="icon" aria-hidden="true"><use href="#icon-plus" /></svg>
+              Nueva cita
+            </button>
+          </div>
+        </section>
+
+        <section class="stats-row" aria-label="Resumen de citas">
+          <article class="stat-card">
+            <span class="stat-label"><svg class="icon" aria-hidden="true"><use href="#icon-calendar" /></svg> Hoy</span>
+            <strong class="stat-value" id="today-count">0</strong>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label"><svg class="icon" aria-hidden="true"><use href="#icon-clock" /></svg> Próximas</span>
+            <strong class="stat-value" id="upcoming-count">0</strong>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label"><svg class="icon" aria-hidden="true"><use href="#icon-check" /></svg> Completadas</span>
+            <strong class="stat-value" id="completed-count">0</strong>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label"><svg class="icon" aria-hidden="true"><use href="#icon-sparkle" /></svg> Total agendado</span>
+            <strong class="stat-value" id="total-count">0</strong>
+          </article>
+        </section>
+
+        <section class="appointments-section" id="appointments" aria-labelledby="appointments-title">
+          <div class="section-heading">
+            <div class="section-title">
+              <h2 id="appointments-title">Citas</h2>
+              <span class="result-count" id="result-count" aria-live="polite"></span>
+            </div>
+            <div class="list-controls">
+              <label class="search-field">
+                <span class="sr-only">Buscar por clienta o servicio</span>
+                <svg class="icon" aria-hidden="true"><use href="#icon-search" /></svg>
+                <input id="search-input" type="search" placeholder="Buscar clienta o servicio" autocomplete="off" />
+              </label>
+              <div class="segmented" id="filter-group" role="group" aria-label="Filtrar citas">
+                <button type="button" class="segment is-active" data-filter="upcoming" aria-pressed="true">Próximas</button>
+                <button type="button" class="segment" data-filter="today" aria-pressed="false">Hoy</button>
+                <button type="button" class="segment" data-filter="all" aria-pressed="false">Todas</button>
+                <button type="button" class="segment" data-filter="past" aria-pressed="false">Pasadas</button>
+                <button type="button" class="segment" data-filter="done" aria-pressed="false">Completadas</button>
+              </div>
+            </div>
+          </div>
+
           <div class="appointment-list" id="appointment-list" aria-live="polite"></div>
         </section>
-        <footer class="page-footer"><span>Valentina Nails</span><span>Las citas se guardan en el almacenamiento de este navegador.</span></footer>
+
+        <footer class="page-footer">
+          <div class="footer-brand">
+            <img src="assets/logo-mark.svg" alt="" width="26" height="26" />
+            <span>Valery Nails</span>
+          </div>
+          <p class="footer-note">Las citas se guardan en el almacenamiento de este navegador. Descarga un respaldo con regularidad.</p>
+        </footer>
       </main>
     </div>
+
     <dialog class="appointment-dialog" id="appointment-dialog" aria-labelledby="dialog-title">
-      <form id="appointment-form">
-        <div class="dialog-heading"><div><p class="eyebrow">DETALLES DE LA CITA</p><h2 id="dialog-title">Nueva cita</h2></div><button class="icon-button" id="close-dialog" type="button" aria-label="Cerrar">×</button></div>
+      <form id="appointment-form" novalidate>
+        <div class="dialog-heading">
+          <div>
+            <p class="eyebrow">Detalles de la cita</p>
+            <h2 id="dialog-title">Nueva cita</h2>
+          </div>
+          <button class="icon-button" id="close-dialog" type="button" aria-label="Cerrar">
+            <svg class="icon" aria-hidden="true"><use href="#icon-close" /></svg>
+          </button>
+        </div>
+
         <div class="form-grid">
-          <label class="field field-wide"><span>Nombre de la clienta</span><input id="client-name" name="clientName" type="text" maxlength="80" placeholder="Ej. Laura Gómez" required /></label>
-          <label class="field field-wide"><span>Tipo de servicio</span><select id="service" name="service" required><option value="">Selecciona un servicio</option><option>Manicure semipermanente</option><option>Uñas acrílicas esculpidas</option><option>Diseño artístico a mano</option><option>Manicure tradicional</option><option>Retiro + spa de manos</option><option>Otro servicio</option></select></label>
-          <label class="field"><span>Fecha</span><input id="appointment-date" name="date" type="date" required /></label>
-          <label class="field"><span>Hora</span><input id="appointment-time" name="time" type="time" required /></label>
-          <label class="field field-wide"><span>Descripción <small>Opcional</small></span><textarea id="description" name="description" rows="3" maxlength="600" placeholder="Colores, forma, referencias o detalles del diseño"></textarea></label>
+          <label class="field field-wide" for="client-name">
+            <span>Nombre de la clienta</span>
+            <input id="client-name" name="clientName" type="text" maxlength="80" placeholder="Ej. Laura Gómez" required autocomplete="off" />
+          </label>
+
+          <label class="field" for="service">
+            <span>Tipo de servicio</span>
+            <select id="service" name="service" required></select>
+          </label>
+          <label class="field" for="custom-service" id="custom-service-field" hidden>
+            <span>Otro servicio</span>
+            <input id="custom-service" name="customService" type="text" maxlength="60" placeholder="Ej. Diseño deuce nails" autocomplete="off" />
+          </label>
+
+          <label class="field" for="appointment-date">
+            <span>Fecha</span>
+            <input id="appointment-date" name="date" type="date" required />
+          </label>
+          <label class="field" for="appointment-time">
+            <span>Hora</span>
+            <input id="appointment-time" name="time" type="time" step="900" required />
+          </label>
+
+          <label class="field field-wide" for="description">
+            <span>Descripción <small>Opcional</small></span>
+            <textarea id="description" name="description" rows="3" maxlength="600" placeholder="Colores, forma, referencias o detalles del diseño"></textarea>
+          </label>
+
           <div class="field field-wide">
             <span>Imágenes de referencia <small id="image-count">Hasta 5 imágenes</small></span>
-            <label class="upload-area" for="images"><span class="upload-icon" aria-hidden="true">＋</span><span><strong>Agregar imágenes</strong><small>JPG, PNG o WebP. Se optimizan para guardarse en este dispositivo.</small></span><input id="images" name="images" type="file" accept="image/jpeg,image/png,image/webp" multiple /></label>
+            <label class="upload-area" for="images">
+              <svg class="icon upload-icon" aria-hidden="true"><use href="#icon-upload" /></svg>
+              <span class="upload-copy">
+                <strong>Agregar imágenes</strong>
+                <small>JPG, PNG o WebP. Se optimizan automáticamente para no llenar el almacenamiento.</small>
+              </span>
+              <input id="images" name="images" type="file" accept="image/jpeg,image/png,image/webp" multiple />
+            </label>
             <div class="image-previews" id="image-previews"></div>
           </div>
+
+          <label class="switch field-wide" for="completed-toggle">
+            <input id="completed-toggle" name="completed" type="checkbox" />
+            <span class="switch-track" aria-hidden="true"><span class="switch-thumb"></span></span>
+            <span class="switch-copy">
+              <strong>Marcar como completada</strong>
+              <small>La cita sale de las próximas y queda registrada como atendida.</small>
+            </span>
+          </label>
         </div>
+
         <p class="form-error" id="form-error" role="alert"></p>
-        <div class="dialog-actions"><button class="button button-quiet" id="cancel-dialog" type="button">Cancelar</button><button class="button button-primary" id="save-appointment" type="submit">Guardar cita</button></div>
+
+        <div class="dialog-actions">
+          <button class="button button-quiet" id="cancel-dialog" type="button">Cancelar</button>
+          <button class="button button-primary" id="save-appointment" type="submit">Guardar cita</button>
+        </div>
       </form>
     </dialog>
-    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <dialog class="confirm-dialog" id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-message">
+      <h2 id="confirm-title">¿Eliminar esta cita?</h2>
+      <p id="confirm-message"></p>
+      <div class="dialog-actions">
+        <button class="button button-quiet" id="confirm-cancel" type="button">Cancelar</button>
+        <button class="button button-danger" id="confirm-accept" type="button">Eliminar</button>
+      </div>
+    </dialog>
+
+    <dialog class="lightbox" id="lightbox" aria-label="Imagen de referencia">
+      <button class="icon-button lightbox-close" id="lightbox-close" type="button" aria-label="Cerrar imagen">
+        <svg class="icon" aria-hidden="true"><use href="#icon-close" /></svg>
+      </button>
+      <button class="icon-button lightbox-nav lightbox-prev" id="lightbox-prev" type="button" aria-label="Imagen anterior">
+        <svg class="icon" aria-hidden="true"><use href="#icon-chevron-left" /></svg>
+      </button>
+      <figure class="lightbox-figure">
+        <img id="lightbox-image" alt="" />
+        <figcaption id="lightbox-caption"></figcaption>
+      </figure>
+      <button class="icon-button lightbox-nav lightbox-next" id="lightbox-next" type="button" aria-label="Imagen siguiente">
+        <svg class="icon" aria-hidden="true"><use href="#icon-chevron-right" /></svg>
+      </button>
+    </dialog>
+
+    <div class="toast-stack" id="toast-stack" role="status" aria-live="polite"></div>
   </body>
 </html>

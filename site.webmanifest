@@ -1,0 +1,25 @@
+{
+  "name": "Valery Nails",
+  "short_name": "Valery",
+  "description": "Agenda de citas del estudio de manicura Valery Nails.",
+  "lang": "es-CO",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fbf5f0",
+  "theme_color": "#702c43",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/logo-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
