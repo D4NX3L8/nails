@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fbf5f0" />
+    <meta name="description" content="Agenda de citas de Valentina Nails." />
+    <title>Agenda | Valentina Nails</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="Valentina Nails, agenda">
+          <span class="brand-mark" aria-hidden="true">V</span>
+          <span class="brand-copy"><span class="brand-name">Valentina Nails</span><span class="brand-caption">ESTUDIO DE MANICURA</span></span>
+        </a>
+        <span class="storage-badge"><span class="status-dot"></span> Guardado en este dispositivo</span>
+      </header>
+      <main class="main-content">
+        <section class="page-heading" aria-labelledby="page-title">
+          <div>
+            <p class="eyebrow" id="today-label"></p>
+            <h1 id="page-title">Tu agenda, <em>en orden.</em></h1>
+            <p class="page-description">Planifica cada detalle de tu próximo trabajo.</p>
+          </div>
+          <button class="button button-primary" id="new-appointment" type="button"><span aria-hidden="true">+</span> Nueva cita</button>
+        </section>
+        <section class="stats-row" aria-label="Resumen de citas">
+          <div class="stat-item"><span class="stat-label">Citas de hoy</span><strong class="stat-value" id="today-count">0</strong></div>
+          <div class="stat-item"><span class="stat-label">Próximas</span><strong class="stat-value" id="upcoming-count">0</strong></div>
+          <div class="stat-item"><span class="stat-label">Total agendadas</span><strong class="stat-value" id="total-count">0</strong></div>
+          <button class="button button-quiet backup-button" id="export-backup" type="button" disabled>Descargar respaldo</button>
+        </section>
+        <section class="appointments-section" aria-labelledby="appointments-title">
+          <div class="section-heading">
+            <div><h2 id="appointments-title">Citas</h2><span class="result-count" id="result-count" aria-live="polite"></span></div>
+            <div class="list-controls">
+              <label class="search-field"><span class="sr-only">Buscar por cliente o servicio</span><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="Buscar cliente o servicio" autocomplete="off" /></label>
+              <label class="sr-only" for="date-filter">Filtrar citas</label>
+              <select id="date-filter" class="filter-select"><option value="upcoming">Próximas</option><option value="today">Hoy</option><option value="all">Todas</option><option value="past">Pasadas</option></select>
+            </div>
+          </div>
+          <div class="appointment-list" id="appointment-list" aria-live="polite"></div>
+        </section>
+        <footer class="page-footer"><span>Valentina Nails</span><span>Las citas se guardan en el almacenamiento de este navegador.</span></footer>
+      </main>
+    </div>
+    <dialog class="appointment-dialog" id="appointment-dialog" aria-labelledby="dialog-title">
+      <form id="appointment-form">
+        <div class="dialog-heading"><div><p class="eyebrow">DETALLES DE LA CITA</p><h2 id="dialog-title">Nueva cita</h2></div><button class="icon-button" id="close-dialog" type="button" aria-label="Cerrar">×</button></div>
+        <div class="form-grid">
+          <label class="field field-wide"><span>Nombre de la clienta</span><input id="client-name" name="clientName" type="text" maxlength="80" placeholder="Ej. Laura Gómez" required /></label>
+          <label class="field field-wide"><span>Tipo de servicio</span><select id="service" name="service" required><option value="">Selecciona un servicio</option><option>Manicure semipermanente</option><option>Uñas acrílicas esculpidas</option><option>Diseño artístico a mano</option><option>Manicure tradicional</option><option>Retiro + spa de manos</option><option>Otro servicio</option></select></label>
+          <label class="field"><span>Fecha</span><input id="appointment-date" name="date" type="date" required /></label>
+          <label class="field"><span>Hora</span><input id="appointment-time" name="time" type="time" required /></label>
+          <label class="field field-wide"><span>Descripción <small>Opcional</small></span><textarea id="description" name="description" rows="3" maxlength="600" placeholder="Colores, forma, referencias o detalles del diseño"></textarea></label>
+          <div class="field field-wide">
+            <span>Imágenes de referencia <small id="image-count">Hasta 5 imágenes</small></span>
+            <label class="upload-area" for="images"><span class="upload-icon" aria-hidden="true">＋</span><span><strong>Agregar imágenes</strong><small>JPG, PNG o WebP. Se optimizan para guardarse en este dispositivo.</small></span><input id="images" name="images" type="file" accept="image/jpeg,image/png,image/webp" multiple /></label>
+            <div class="image-previews" id="image-previews"></div>
+          </div>
+        </div>
+        <p class="form-error" id="form-error" role="alert"></p>
+        <div class="dialog-actions"><button class="button button-quiet" id="cancel-dialog" type="button">Cancelar</button><button class="button button-primary" id="save-appointment" type="submit">Guardar cita</button></div>
+      </form>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
