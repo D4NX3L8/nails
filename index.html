@@ -37,6 +37,7 @@
       <symbol id="icon-chevron-left" viewBox="0 0 24 24"><path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></symbol>
       <symbol id="icon-chevron-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></symbol>
       <symbol id="icon-sparkle" viewBox="0 0 24 24"><path d="M12 3.5 13.7 9l5.5 1.7-5.5 1.7L12 18l-1.7-5.6L4.8 10.7 10.3 9Z" fill="currentColor" /><path d="M18.5 16.5 19.2 18.6l2.1.7-2.1.7-.7 2.1-.7-2.1-2.1-.7 2.1-.7Z" fill="currentColor" opacity=".7" /></symbol>
+      <symbol id="icon-image" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="1.6" /><circle cx="9" cy="10" r="1.6" fill="none" stroke="currentColor" stroke-width="1.5" /><path d="m4.5 17 4.8-4.4a2 2 0 0 1 2.7 0l3 2.7m0 0 1.8-1.6a2 2 0 0 1 2.7 0l1 1" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></symbol>
     </svg>
 
     <a class="skip-link" href="#appointments-title">Ir a la lista de citas</a>
@@ -44,9 +45,9 @@
     <div class="app-shell">
       <header class="topbar">
         <a class="brand" href="./" aria-label="Valery Nails, inicio de la agenda">
-          <span class="brand-mark"><img src="assets/logo-mark.svg" alt="" width="42" height="42" /></span>
+          <span class="brand-mark" id="brand-mark"><img id="brand-logo" src="assets/logo-mark.svg" alt="" width="42" height="42" /></span>
           <span class="brand-copy">
-            <span class="brand-name">Valery Nails</span>
+            <span class="brand-name" id="brand-name">Valery Nails</span>
             <span class="brand-caption">Estudio de manicura</span>
           </span>
         </a>
@@ -59,11 +60,15 @@
 
           <div class="menu" id="data-menu">
             <button class="button button-quiet" id="data-menu-button" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="data-menu-panel">
-              <svg class="icon" aria-hidden="true"><use href="#icon-download" /></svg>
-              <span>Respaldo</span>
+              <svg class="icon" aria-hidden="true"><use href="#icon-edit" /></svg>
+              <span>Mi estudio</span>
             </button>
             <div class="menu-panel" id="data-menu-panel" role="menu" hidden>
-              <p class="menu-title">Tus datos</p>
+              <p class="menu-title">Personaliza y respalda</p>
+              <button class="menu-item" type="button" role="menuitem" data-action="profile">
+                <svg class="icon" aria-hidden="true"><use href="#icon-image" /></svg>
+                <span><strong>Nombre y logo</strong><small>Cambia lo que se ve arriba en la agenda</small></span>
+              </button>
               <button class="menu-item" type="button" role="menuitem" data-action="export-csv">
                 <svg class="icon" aria-hidden="true"><use href="#icon-download" /></svg>
                 <span><strong>Descargar citas</strong><small>Archivo CSV para Excel o Sheets</small></span>
@@ -144,8 +149,8 @@
 
         <footer class="page-footer">
           <div class="footer-brand">
-            <img src="assets/logo-mark.svg" alt="" width="26" height="26" />
-            <span>Valery Nails</span>
+            <img id="footer-logo" src="assets/logo-mark.svg" alt="" width="26" height="26" />
+            <span id="footer-name">Valery Nails</span>
           </div>
           <p class="footer-note">Las citas se guardan en el almacenamiento de este navegador. Descarga un respaldo con regularidad.</p>
         </footer>
@@ -221,6 +226,58 @@
         <div class="dialog-actions">
           <button class="button button-quiet" id="cancel-dialog" type="button">Cancelar</button>
           <button class="button button-primary" id="save-appointment" type="submit">Guardar cita</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="appointment-dialog profile-dialog" id="profile-dialog" aria-labelledby="profile-title">
+      <form id="profile-form" novalidate>
+        <div class="dialog-heading">
+          <div>
+            <p class="eyebrow">Identidad del estudio</p>
+            <h2 id="profile-title">Nombre y logo</h2>
+          </div>
+          <button class="icon-button" id="profile-close" type="button" aria-label="Cerrar">
+            <svg class="icon" aria-hidden="true"><use href="#icon-close" /></svg>
+          </button>
+        </div>
+
+        <div class="form-grid">
+          <div class="brand-preview" id="brand-preview">
+            <span class="brand-mark" id="preview-mark"><img id="preview-logo" src="assets/logo-mark.svg" alt="" /></span>
+            <span class="brand-copy">
+              <span class="brand-name" id="preview-name">Valery Nails</span>
+              <span class="brand-caption">Así se verá arriba</span>
+            </span>
+          </div>
+
+          <label class="field field-wide" for="business-name">
+            <span>Nombre del estudio</span>
+            <input id="business-name" name="businessName" type="text" maxlength="40" placeholder="Valery Nails" autocomplete="off" required />
+          </label>
+
+          <div class="field field-wide">
+            <span>Logo <small id="logo-state">Opcional</small></span>
+            <label class="upload-area" for="logo-input">
+              <svg class="icon upload-icon" aria-hidden="true"><use href="#icon-image" /></svg>
+              <span class="upload-copy">
+                <strong id="logo-action">Agregar tu logo</strong>
+                <small>PNG, JPG o WebP. Se reduce a 240 px y se guarda en este dispositivo.</small>
+              </span>
+              <input id="logo-input" type="file" accept="image/jpeg,image/png,image/webp" />
+            </label>
+            <button class="link-button" id="reset-logo" type="button" data-action="reset-logo" hidden>
+              <svg class="icon" aria-hidden="true"><use href="#icon-undo" /></svg>
+              Quitar mi logo y volver al original
+            </button>
+          </div>
+        </div>
+
+        <p class="form-error" id="profile-error" role="alert"></p>
+
+        <div class="dialog-actions">
+          <button class="button button-quiet" id="profile-cancel" type="button">Cancelar</button>
+          <button class="button button-primary" id="profile-save" type="submit">Guardar</button>
         </div>
       </form>
     </dialog>

@@ -154,6 +154,16 @@ export function saveSettings(patch) {
   return settings;
 }
 
+export function saveProfile(patch) {
+  const settings = { ...getSettings(), ...patch };
+  try {
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+  } catch {
+    throw new Error("El navegador no tiene espacio para guardar el logo. Prueba con una imagen más pequeña.");
+  }
+  return settings;
+}
+
 export function getStorageUsage() {
   try {
     const used = (localStorage.getItem(STORAGE_KEY) || "").length;

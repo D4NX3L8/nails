@@ -286,7 +286,7 @@ a { color: inherit; }
   backdrop-filter: blur(14px) saturate(1.2);
 }
 
-.brand { display: inline-flex; align-items: center; gap: 13px; text-decoration: none; }
+.brand { min-width: 0; display: inline-flex; align-items: center; gap: 13px; text-decoration: none; }
 
 .brand-mark {
   width: 42px;
@@ -300,14 +300,38 @@ a { color: inherit; }
 
 .brand:hover .brand-mark { transform: rotate(-6deg) scale(1.04); }
 .brand-mark img { width: 100%; height: 100%; border-radius: 50%; display: block; }
-.brand-copy { display: grid; gap: 3px; }
-.brand-name { font: 500 21px/1 var(--display); letter-spacing: .01em; }
+
+.brand-mark.is-custom {
+  width: auto;
+  min-width: 42px;
+  max-width: 128px;
+  height: 42px;
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.brand-mark.is-custom img { width: auto; height: 100%; border-radius: 7px; object-fit: contain; }
+.brand:hover .brand-mark.is-custom { transform: translateY(-1px); }
+
+.brand-copy { min-width: 0; display: grid; gap: 3px; }
+.brand-name { font: 500 21px/1 var(--display); letter-spacing: .01em; overflow-wrap: anywhere; }
+
+.topbar .brand-name {
+  display: block;
+  max-width: min(50vw, 300px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .brand-caption {
   color: var(--muted);
   font-size: 9px;
   font-weight: 800;
   letter-spacing: .16em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .topbar-tools { display: flex; align-items: center; gap: 16px; }
@@ -730,6 +754,7 @@ a { color: inherit; }
 
 .footer-brand { display: inline-flex; align-items: center; gap: 8px; color: var(--ink-soft); font-weight: 800; }
 .footer-brand img { display: block; border-radius: 50%; }
+.footer-brand img[hidden] { display: none; }
 .footer-note { max-width: 460px; line-height: 1.6; }
 
 /* 7. Diálogos -------------------------------------------------------------- */
@@ -779,6 +804,39 @@ dialog::backdrop { background: var(--overlay); backdrop-filter: blur(4px); }
 .field > span { letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
 .field > span small { margin-left: 6px; color: var(--faint); font-size: 9.5px; font-weight: 700; letter-spacing: .04em; }
 .field-wide { grid-column: 1 / -1; }
+
+.brand-preview {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 14px 16px;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+}
+
+.brand-preview .brand-mark { flex: 0 0 auto; }
+.brand-preview .brand-name { font-size: 18px; }
+.brand-preview .brand-caption { letter-spacing: .12em; }
+
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  justify-self: start;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--wine);
+  font-size: 11.5px;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.link-button .icon { width: 14px; height: 14px; }
+.link-button:hover { color: var(--wine-dark); }
+.link-button[hidden] { display: none; }
 
 .field input,
 .field select,
@@ -1048,6 +1106,7 @@ dialog::backdrop { background: var(--overlay); backdrop-filter: blur(4px); }
 @media (max-width: 760px) {
   .topbar { min-height: 66px; padding: 10px 18px; }
   .brand-mark { width: 36px; height: 36px; }
+  .brand-mark.is-custom { min-width: 36px; max-width: 92px; height: 36px; padding: 4px 9px; }
   .brand-name { font-size: 18px; }
   .brand-caption { font-size: 8px; }
   .storage-badge { display: none; }

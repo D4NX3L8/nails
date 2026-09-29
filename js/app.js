@@ -8,13 +8,16 @@ import {
   getStorageUsage,
   replaceAppointments,
   restoreAppointment,
+  saveProfile,
   saveSettings,
   setAppointmentCompleted,
   updateAppointment,
 } from "./data/appointment-storage.js";
 import { readBackupFile } from "./services/import-backup.js";
 import { renderAgenda } from "./ui/appointment-list.js";
+import { applyBrand } from "./ui/brand.js";
 import { createAppointmentForm } from "./ui/appointment-form.js";
+import { createProfileForm } from "./ui/profile-form.js";
 import { downloadCsv, downloadJson } from "./ui/backup.js";
 import { confirmAction, initConfirmDialog } from "./ui/confirm.js";
 import { initLightbox, openLightbox } from "./ui/lightbox.js";
@@ -45,6 +48,14 @@ const appointmentForm = createAppointmentForm({
     refresh();
     notify(appointmentId ? "Cita actualizada." : `Cita agendada para ${data.clientName}.`, { type: "success" });
     return saved;
+  },
+});
+
+const profileForm = createProfileForm({
+  onSubmit(profile) {
+    saveProfile(profile);
+    applyBrand(profile);
+    notify(`Ahora tu agenda dice “${profile.businessName}”.`, { type: "success" });
   },
 });
 
@@ -151,6 +162,11 @@ function initDataMenu() {
     if (!button) return;
     toggleMenu(false);
 
+    if (button.dataset.action === "profile") {
+      profileForm.open();
+      return;
+    }
+
     if (button.dataset.action === "export-csv") {
       const done = downloadCsv(appointments);
       notify(done ? "Archivo CSV descargado. Ábrelo con Excel o Google Sheets." : "No hay citas para descargar.", { type: done ? "success" : "error" });
@@ -211,7 +227,7 @@ document.addEventListener("keydown", (event) => {
   const typing = target instanceof HTMLElement
     && (target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName));
   if (typing || event.metaKey || event.ctrlKey || event.altKey) return;
-  if (elements.dialog.open || elements.lightbox.open || elements.confirmDialog.open) return;
+  if (elements.dialog.open || elements.profileDialog.open || elements.lightbox.open || elements.confirmDialog.open) return;
   if (event.key.toLowerCase() === "n") appointmentForm.open();
 });
 
@@ -222,5 +238,6 @@ window.addEventListener("storage", (event) => {
 initConfirmDialog();
 initLightbox();
 initDataMenu();
+applyBrand();
 setFilter(filters.view);
 refresh();
