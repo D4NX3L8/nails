@@ -6,7 +6,7 @@ import { fmtDateLong, fmtTime12, buildSlots } from "../lib/dates";
 import { filesToDataURLs, estimateBytes } from "../lib/images";
 import type { Appointment, Service, Slot } from "../lib/types";
 import MonthCalendar from "../components/MonthCalendar";
-import { Button, Chip, PageHeader, inputClass, Modal } from "../components/ui";
+import { Button, Chip, PageHeader, inputClass } from "../components/ui";
 import { useToast } from "../components/Toast";
 
 const STEP_LABELS = ["Servicio", "Día", "Hora", "Confirmar"];
@@ -399,18 +399,6 @@ export default function AgendarPage({ onDone }: { onDone: () => void }) {
           <ArrowLeft size={15} /> Volver al paso {step - 1}
         </button>
       )}
-
-      {/* Diálogo de espacio insuficiente si la cita ya no cabe */}
-      <Modal
-        open={storageUsedBytes > 5 * 1024 * 1024}
-        onClose={() => {}}
-        title="Sin espacio de almacenamiento"
-      >
-        <p className="text-sm text-ink/60 leading-relaxed">
-          Las imágenes de referencia se guardan en el almacenamiento local del navegador, que tiene un límite. Quita
-          algunas imágenes de esta cita o elimina citas antiguas para liberar espacio.
-        </p>
-      </Modal>
     </div>
   );
 }
